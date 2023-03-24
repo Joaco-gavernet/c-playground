@@ -1,0 +1,26 @@
+#include <stdio.h>
+#include <stdlib.h>
+#define forn(i,n) for(i=0; i<n; i++)
+#define dim 5
+
+int main()
+{
+    int arr[dim];
+    int i;
+    int pares = 0, impares = 0;
+
+    forn(i,dim) {
+        static int num = 0;
+        num = 1 + rand() % 100;
+
+        arr[i] = num;
+
+        if ((i % 2) && !(num % 2)) pares++;
+        else if (num % 2) impares++;
+
+        printf("%d \n", arr[i]);
+    }
+
+    printf("Numeros pares en pos impares: %d \n", pares);
+    printf("Numeros impares en pos pares: %d \n", impares);
+}
