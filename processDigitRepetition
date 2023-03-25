@@ -1,0 +1,23 @@
+#include <stdio.h>
+#include <stdlib.h>
+#define forn(i,n) for(i=0; i<n; i++)
+
+void processDigitRepetition (int arr[10], int num)
+{
+    while (num > 0) {
+        arr[num % 10]++;
+        num /= 10;
+    }
+}
+
+int main()
+{
+    int input, i;
+    scanf("%d", &input);
+    int arr[10] = {0};
+    processDigitRepetition(arr, input);
+
+    printf("Te lo devuelvo: \n");
+    forn(i, 10) printf("Digito %d: %d \n", i, arr[i]);
+
+}
