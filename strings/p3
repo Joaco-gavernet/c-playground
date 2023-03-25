@@ -1,0 +1,22 @@
+#include <stdio.h>
+#define forn(i,n) for(i=0; i<n; i++)
+
+char* changeChar (char *str, char x, char y)
+{
+    int i;
+    forn(i, strlen(str)) if (str[i] == x) str[i] = y;
+
+    return str;
+}
+
+int main()
+{
+    char example[10] = "holx";
+    char *result;
+
+    result = changeChar(example, 'x', 'a');
+    printf("%s", result);
+
+    return 0;
+}
+
