@@ -1,0 +1,24 @@
+#include <stdio.h>
+#define forn(i,n) for(i=0; i<n; i++)
+
+int strLength (char *str)
+{
+    int length = 0, i = 0;
+
+    while (str[i] - '\0')
+    {
+        length++;
+        i++;
+    }
+
+    return length;
+}
+
+int main()
+{
+    char example[30] = "hola"; // ocupa 5*8 (espacios*bytes) en memoria
+    printf("%d", strLength(example));
+
+    return 0;
+}
+
