@@ -7,7 +7,7 @@ float promedio (float arr[], int l) {
     float total = 0;
     int i;
     for (i = 0; i < l; i++) total += arr[i];
-    return total / 2;
+    return total / l;
 }
 
 int minimo (float arr[], int l) {
