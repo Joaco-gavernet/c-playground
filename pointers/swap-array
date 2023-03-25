@@ -1,0 +1,39 @@
+#include <stdio.h>
+#define forn(i,n) for(i=0; i<n; i++)
+#define dim 4
+
+void swap(int *a, int *b)
+{
+    int tmp;
+
+    tmp = *a;
+    *a = *b;
+    *b = tmp;
+
+    return 0;
+}
+
+void swapArr (int *arr, int l)
+{
+    int i, last = l - 1, tmp;
+    forn(i, l/2)
+    {
+        tmp = last - i;
+        swap(&arr[i], &arr[tmp]);
+    }
+
+    return 0;
+}
+
+int main()
+{
+    int arr[4] = {1, 2, 3, 4};
+    int i;
+    forn(i, dim) printf("%d ", arr[i]);
+
+    swapArr(arr, dim);
+    forn(i, dim) printf("%d ", arr[i]);
+
+    return 0;
+}
+
