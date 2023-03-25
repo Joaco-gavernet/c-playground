@@ -1,0 +1,20 @@
+#include <stdio.h>
+#define forn(i,n) for(i=0; i<n; i++)
+#define lim "XXX"
+
+int main()
+{
+    char input[10];
+    int total = 0;
+
+    scanf("&s", input);
+    while (strcmp(input, lim))
+    {
+        scanf("%s", input);
+        if (input[strlen(input) - 1] == 'o') total++;
+    }
+    printf("Total de palabras con 'o': %d", total);
+
+    return 0;
+}
+
