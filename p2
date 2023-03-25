@@ -1,0 +1,39 @@
+#include <stdio.h>
+#include <stdlib.h>
+#define forn(i,n) for(i=0; i<n; i++)
+#define dim 5
+
+float promedio (float arr[], int l) {
+    float total = 0;
+    int i;
+    for (i = 0; i < l; i++) total += arr[i];
+    return total / 2;
+}
+
+int minimo (float arr[], int l) {
+    int min = 2147483647;
+    int i;
+    forn(i, l) if (arr[i] < min) min = arr[i];
+    return min;
+}
+
+int posMax (float arr[], int l) {
+    int pos = 0, i;
+    forn(i, l) if (arr[i] > arr[pos]) pos = i;
+    return pos;
+}
+
+int main()
+{
+    float arr[dim];
+    int i;
+
+    forn(i,dim) {
+        arr[i] = 1 + rand() % 100;
+        printf("%.2f \n", arr[i]);
+    }
+
+    printf("promedio: %.2f \n", promedio(arr, dim));
+    printf("minimo: %d \n", minimo(arr, dim));
+    printf("posicion del maximo: %d", posMax(arr, dim));
+}
