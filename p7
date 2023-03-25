@@ -1,0 +1,41 @@
+#include <stdio.h>
+#include <stdlib.h>
+#define forn(i,n) for(i=0; i<n; i++)
+#define anios 10
+#define meses 12
+#define dias 30
+
+int main()
+{
+    int precipitations[anios][meses][dias] = {0};
+    int i, j, k;
+
+    forn(i, anios) forn(j, meses) forn(k, dias) precipitations[i][j][k] = 1 + rand() % 100; // cargando ejemplo
+
+    int minAnio = 0, minPromedio = 2147483647;
+    forn(i, anios)
+    {
+        int totAnio = 0;
+        int minMes = 0, minCant = 2147483647;
+        forn(j, meses)
+        {
+            int totMes = 0;
+            forn(k, dias) totMes += precipitations[i][j][k]; // totalizo mes
+            totAnio += totMes;
+            if (totMes < minCant) {
+                minMes = j;
+                minCant = totMes;
+            }
+        }
+
+        if ((totAnio / 12) < minPromedio)
+        {
+            minAnio = i;
+            minPromedio = totAnio / 12;
+        }
+
+        printf("Anio %d: mes %d con %d cm3 \n", i, minMes + 1, minCant);
+    }
+
+    printf("Anio %d con menor promedio %d \n", minAnio, minPromedio);
+}
