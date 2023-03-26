@@ -1,0 +1,27 @@
+#include <stdio.h>
+#define forn(i,n) for(i=0; i<n; i++)
+
+char * strCopy (char *x, char *y)
+{
+    int i = 0;
+
+    while (y[i] - '\0')
+    {
+        x[i] = y[i];
+        i++;
+    }
+    x[i] = '\0';
+
+    return x;
+}
+
+int main()
+{
+    char cadena1[30] = "hola";
+    char cadena2[10] = "chau";
+
+    // printf("%s", strcpy(cadena1, cadena2));
+    printf("%s", strCopy(cadena1, cadena2)); // no funciona
+
+    return 0;
+}
