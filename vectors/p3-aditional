@@ -1,0 +1,63 @@
+#include <stdio.h>
+#define forn(i,n) for(i=0; i<n; i++)
+#define CANT_DATOS 5
+
+void upperStr (char *);
+void lowerStr (char *);
+void numToStr (int, char *);
+
+
+int main()
+{
+    char example[20] = "hola";
+    int num = 123;
+    char result[10] = "";
+
+    printf("%s \n", example);
+    upperStr(example);
+
+    numToStr(num, result);
+    printf("%s ", result);
+
+    return 0;
+}
+
+void upperStr (char * str) {
+    int i = 0;
+    while (str[i] != '\0')
+    {
+        int res = str[i];
+        str[i] = res - 32;
+        i++;
+    }
+}
+
+void lowerStr (char * str) {
+    int i = 0;
+    while (str[i] != '\0')
+    {
+        int res = str[i];
+        str[i] = res + 32;
+        i++;
+    }
+}
+
+void numToStr (int entero, char * result) {
+    int inverted = 0;
+    int i = 1;
+
+    while (entero) {
+        inverted = (inverted * i) + (entero % 10);
+        entero /= 10;
+        i = 10;
+    }
+
+    printf("inverted = %d \n", inverted);
+    while (inverted) {
+        *result = (char) ((inverted % 10) + 48);
+        inverted /= 10;
+        result++;
+    }
+
+}
+
