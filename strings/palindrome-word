@@ -1,0 +1,39 @@
+#include <stdio.h>
+#define forn(i,n) for(i=0; i<n; i++)
+
+int palindromeWord (char *word)
+{
+    int i = 0, last = strlen(word) - 1;
+
+    for (i = 0; i < strlen(word) / 2; i++)
+    {
+        if (word[i] != word[last - i]) return 0;
+    }
+
+    return 1;
+}
+
+int palindromeWordWithPointer (char *first)
+{
+    char * last = first + strlen(first) - 1;
+    while (first < last)
+    {
+        if (*first != *last) return 0;
+        first++;
+        last--;
+    }
+
+    return 1;
+}
+
+int main()
+{
+    char word[30] = "rotor";
+    int result;
+
+    result = palindromeWordWithPointer(word);
+    printf("%d", result);
+
+    return 0;
+}
+
