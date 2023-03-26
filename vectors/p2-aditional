@@ -1,0 +1,77 @@
+#include <stdio.h>
+#define forn(i,n) for(i=0; i<n; i++)
+#define CANT_DATOS 5
+
+void printVec (int * vec)
+{
+    int i;
+    forn(i, CANT_DATOS) printf("%2d", vec[i]);
+}
+
+void opcion1(int datos[]){ // divide los elementos por 2 y castea a int
+ int i;
+ for (i=0; i<CANT_DATOS; i++){
+ datos[i] = datos[i]*0.5;
+ }
+}
+
+void opcion2(int *datos){ // lo mismo que la opcion 1 sin usar index
+ int i;
+ for (i=0; i<CANT_DATOS; i++){
+ (*datos++) = (*datos)/2;
+ }
+}
+
+void opcion3(int *datos){ // lo mismo que las anteriores
+ int i;
+ for (i=0; i<CANT_DATOS; i++, datos++){
+ *datos= *datos*0.5;
+ }
+}
+
+void opcion4(int datos[]){ // lo mismo, por la presedencia de los operadores
+ int i;
+ for (i=0; i<CANT_DATOS; i++){
+ *datos++= *datos/2;
+ }
+}
+
+void opcion5(int datos[]){ // lo mismo, incrementa dos veces datos y luego decrementa
+ int i;
+ for (i=0; i<CANT_DATOS; i++, datos--){
+ *datos++= *datos++*0.5;
+ }
+}
+
+void opcion6(int *datos){ // lo mismo
+ int i;
+ for (i=0; i<CANT_DATOS; i++){
+ *datos= *datos++*0.5;
+ }
+}
+
+void opcion7(int datos[]){ // lo mismo, por la presedencia de los parentesis
+ int i;
+ for (i=0; i<CANT_DATOS; i++){
+ datos[i]= *(datos+i)*0.5;
+ }
+}
+
+void opcion8(int *datos){
+ int i;
+ for (i=0; i<CANT_DATOS; i++){
+ *(datos+i)= datos[i]/2;
+ }
+}
+
+
+int main()
+{
+    int example[CANT_DATOS] = {1};
+
+    opcion7(example);
+    printVec(example);
+
+    return 0;
+}
+
