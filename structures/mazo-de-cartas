@@ -1,0 +1,75 @@
+#include <stdio.h>
+#include <string.h>
+#include <stdlib.h>
+#include <time.h>
+
+#define DIM 4
+#define forn(i,n) for(i=0;i<n;i++)
+
+struct tcarta{
+    int numero;
+    char palo[10];
+};
+typedef struct tcarta carta;
+
+void imprimirCarta (carta x) {
+    printf("numero: %d palo: %s\n", x.numero, x.palo);
+}
+
+void imprimirMazo (carta *mazo, int cant) {
+    int i;
+    forn(i,cant) {
+        printf("numero %d palo %s\n", mazo[i].numero, mazo[i].palo);
+    }
+}
+
+void swapCartas (carta *mazo, int a, int b) {
+    carta aux = {};
+    aux = mazo[a];
+    mazo[a] = mazo[b];
+    mazo[b] = aux;
+}
+
+void barajarMazo(carta *mazo, int cant) {
+    int i;
+    srand(time(NULL));
+    int limit = rand() % 3;
+    int pos;
+
+    for (i = 0; i < limit; i++) {
+        pos = rand() % cant;
+        swapCartas(mazo, i, pos);
+    }
+}
+
+void deleteElement (carta *mazo, int *size, int index) {
+    int i;
+    for (i = index; i < (*size - 1); i++) {
+        mazo[i] = mazo[++i];
+    }
+    (*size)--;
+}
+
+carta takeCarta (carta *mazo, int index, int *size) {
+    carta result;
+    result = mazo[index];
+    deleteElement(mazo, size, index);
+    return result;
+}
+
+int main()
+{
+    carta mazo[DIM] = {{1, "espada"}, {1, "basto"}, {1, "copa"}, {1, "oro"}};
+    int size = 4;
+    imprimirMazo(mazo, size);
+    barajarMazo(mazo, size);
+
+    int index = 1;
+    printf("deleted:\n");
+    imprimirCarta(takeCarta(mazo, index, &size));
+
+    printf("result: \n");
+    imprimirMazo(mazo, size);
+
+    return 0;
+}
