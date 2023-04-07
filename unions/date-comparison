@@ -1,0 +1,30 @@
+#include <stdio.h>
+#include <string.h>
+#include <stdlib.h>
+#include <time.h>
+
+#define DIM 4
+#define forn(i,n) for(i=0;i<n;i++)
+
+union tfecha {
+    struct {
+        int anio;
+        short mes;
+        short dia;
+    } separated;
+    unsigned long int toCompare;
+};
+typedef union tfecha Fecha;
+
+int main()
+{
+    Fecha perro = {2123, 0, 0};
+    Fecha gato = {2023, 4, 4};
+    printf("perro: %lu \n", perro.toCompare);
+    printf("gato: %lu \n", gato.toCompare);
+
+    if (perro.toCompare > gato.toCompare) printf("perro");
+    else printf("gato");
+
+    return 0;
+}
