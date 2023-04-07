@@ -1,0 +1,43 @@
+#include <stdio.h>
+#include <string.h>
+#include <stdlib.h>
+#include <time.h>
+
+#define DIM 4
+#define forn(i,n) for(i=0;i<n;i++)
+
+struct testudiante {
+    char apellido[20];
+    int argentino;
+    union {
+        unsigned long int dni; // 64 bits = 8 bytes
+        char pasaporte[8]; // 1 char = 1 bytes ---> 8 char = 8 bytes
+    } placeholder;
+};
+typedef struct testudiante Student;
+
+void readStudent (Student *input) {
+    printf("ingrese apellido: ");
+    scanf("%s", input->apellido);
+
+    printf("\ningrese 1 si es argentino o 0 si no lo es: ");
+    scanf("%d", &(input->argentino));
+
+    printf("\ningrese dni/pasaporte: ");
+    (input->argentino) ? scanf("%lu", &(input->placeholder)) : scanf("%s", input->placeholder);
+}
+
+void printStudent (Student input) {
+    printf("student: %s argentino: %d \n", input.apellido, input.argentino);
+    if (input.argentino) printf("%lu", input.placeholder);
+    else printf("%s", input.placeholder);
+}
+
+int main()
+{
+    Student lati;
+    readStudent(&lati);
+    printStudent(lati);
+
+    return 0;
+}
