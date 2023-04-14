@@ -1,0 +1,28 @@
+#include <stdio.h>
+#include <string.h>
+#include <stdlib.h>
+#include <time.h>
+
+#define DIM 4
+#define forn(i,n) for(i=0;i<n;i++)
+
+typedef enum { LUNES, MARTES, MIERCOLES, JUEVES, VIERNES, SABADO, DOMINGO } Semana;
+
+void printdia (int i, const char * arr[]) {
+    printf("%s", arr[i]);
+}
+
+int main()
+{
+    Semana dia;
+    const char * nombreDia[] = {"", "Lunes", "Martes", "Miercoles", "Jueves", "Viernes", "Sabado", "Domingo" };
+    int i;
+
+    for (i = 1; i < 8; i++) {
+        printf("Semana: %s\n", nombreDia[i]);
+        printf("Semana: %s\n", nombreDia[i]);
+        printdia(i, nombreDia);
+    }
+
+    return 0;
+}
