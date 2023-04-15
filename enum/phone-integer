@@ -1,0 +1,68 @@
+#include <stdio.h>
+#include <string.h>
+#include <stdlib.h>
+#include <time.h>
+
+#define DIM 4
+#define forn(i,n) for(i=0;i<n;i++)
+
+typedef enum { Bluetooth = 1, Wifi = 2, GPS = 4, Datos = 8, Frontal = 16, Trasera = 32, Linterna = 64, Vibrar = 128} Modulos;
+
+void printModulo (int i, const char * arr[]) {
+    printf("on --> %s\n", arr[i]);
+}
+
+void activeModules (int phone, const char * arr[]) {
+    int i;
+    int mask = 128; // 1000 0000
+
+    if (phone == 0) {
+        printf("everything is OFF\n");
+    } else {
+        for (i = 0; i < 8; i++) {
+            if (phone & mask) printModulo(i, arr);
+            mask >>= 1; // desplazo mascara (implementable en el encabezado del for)
+        }
+    }
+}
+
+void moduleOn (int module, int * phone) {
+//    int mask = pow(2, (8 - module)); // me ahorro hayar esta potencia implementando enum
+    *phone |= module;
+}
+
+void moduleOff (int module, int * phone) {
+//    int mask = pow(2, (8 - module));
+    *phone &= (~module);
+}
+
+void moduleInvert (int module, int * phone) {
+//    int mask = pow(2, (8 - module));
+    *phone ^= module;
+}
+
+int main()
+{
+    const char * recuperarNombre[] = {"Bluetooth", "Wifi", "GPS", "Datos", "Frontal", "Trasera", "Linterna", "Vibrar" };
+    const int encendido = 255;
+    const int apagado = 0;
+
+    int iphone = apagado; // inicio apagados
+    iphone = encendido; // enciendo modulos
+    activeModules(iphone, recuperarNombre);
+
+    iphone = apagado;
+    moduleOn(GPS, &iphone); // activo el GPS
+    printf("\nexample on: \n");
+    activeModules(iphone, recuperarNombre);
+
+    moduleOff(GPS, &iphone);
+    printf("\nexample off: \n");
+    activeModules(iphone, recuperarNombre);
+
+    printf("\nmodule invert: \n");
+    moduleInvert(Linterna, &iphone);
+    activeModules(iphone, recuperarNombre);
+
+    return 0;
+}
