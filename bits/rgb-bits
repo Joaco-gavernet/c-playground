@@ -1,0 +1,65 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+struct T24 {
+    char R;
+    char G;
+    char B;
+};
+
+struct T16 {
+    unsigned int R: 5;
+    unsigned int G: 6;
+    unsigned int B: 5;
+};
+
+typedef struct T24 RGB24;
+typedef struct T16 RGB16;
+
+void convert16 (const RGB24 * input, RGB16 * res) {
+    int aux;
+    aux = input->R;
+    aux >>= 3;
+    res->R = aux;
+
+    aux = input->G;
+    aux >>= 2;
+    res->G = aux;
+
+    aux = input->B;
+    aux >>= 3;
+    res->B = aux;
+}
+
+void convert24 (const RGB16 * input, RGB24 * res) {
+    int aux;
+
+    aux = input->R;
+    aux <<= 3;
+    res->R = aux;
+
+    aux = input->G;
+    aux <<= 2;
+    res->G = aux;
+
+    aux = input->B;
+    aux <<= 3;
+    res->B = aux;
+}
+
+
+int main()
+{
+    RGB24 first = {33, 33, 33};
+    RGB16 second = {1, 1, 1};
+    RGB16 result;
+    printf("first: [%d, %d, %d] \n", first.R, first.G, first.B);
+
+    convert16(&first, &result);
+    printf("convert16: [%d, %d, %d] \n", result.R, result.G, result.B);
+
+    convert24(&result, &first);
+    printf("convert24: [%d, %d, %d] \n", first.R, first.G, first.B);
+
+    return 0;
+}
