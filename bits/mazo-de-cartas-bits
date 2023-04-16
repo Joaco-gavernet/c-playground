@@ -1,0 +1,55 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
+
+#define forn(i, n) for(i = 0; i < n; i++)
+#define DIMF 48
+
+typedef struct { // size 8 bits = 1 byte
+    unsigned int num: 4; // 4 (decimal) ===> 0100 (binario)
+    unsigned int palo: 2;
+    unsigned int color: 2; // con 1 bit bastaba
+} carta;
+
+void imprimirCarta (carta c, const char recuperarNumero[], const char * recuperarPalo[], const char * recuperarColor[]) {
+    printf("CARTA --> num: %u       palo: %u        color: %u \n", c.num, c.palo, c.color);
+}
+
+void imprimirMazo (carta mazo[], const int diml, const char recuperarNumero[], const char * recuperarPalo[], const char * recuperarColor[]) {
+    int i;
+    printf("chauuuuuuuuuuuu %d",diml);
+    forn (i, diml) {
+        imprimirCarta(mazo[i], recuperarNumero, recuperarPalo, recuperarColor);
+    }
+}
+
+void llenarMazo (carta mazo[], const int diml) {
+    int k;
+    for (k = 0; k < 49; k++) {
+        mazo[k].num = (k % 12) + 1;
+        mazo[k].palo = (k % 4);
+        mazo[k].color = (k % 2);
+    }
+}
+
+int main()
+{
+    srand(time(NULL));
+    carta mazo[DIMF];
+    int diml = DIMF;
+
+    const char recuperarNumero[] = { ' ', 'A', '2', '3', '4', '5', '6', '7', '8', '9', 'J', 'Q', 'K'}; // char * = cadena de caracteres (string)
+    const char * recuperarPalo[] = {"Corazon", "Diamante", "Trebol", "Pica" };
+    const char * recuperarColor[] = {"Rojo", "Negro" };
+
+    // LOGICA ////////
+    printf("dimension> %d",diml);
+    llenarMazo(mazo, diml);
+    imprimirMazo(mazo, DIMF, recuperarNumero, recuperarPalo, recuperarColor);
+
+    // mezclarMazo(&mazo, DIML);
+    // int i = rand() % 52;
+    // imprimirCarta(devolverCarta(&mazo, i, DIML));
+
+    return 0;
+}
