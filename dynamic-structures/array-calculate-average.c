@@ -7,7 +7,7 @@ void init(float *p, int n)
 {
   for (int i = 0; i < n; i++)
   {
-    scanf("%f", &(p[i]));
+    scanf("%f", &(p[i])); // p + 1, es valido para hacer una asignacion
     fflush(stdin);
   }
 }
