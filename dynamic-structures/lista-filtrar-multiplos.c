@@ -110,10 +110,9 @@ void filtrarLista(struct nodo **first, int n)
         printf("libero nodo\n");
         if (act == ant)
         { // primer nodo en la lista a eliminar
-          printf("hello");
-          ant = act->sig;
-          free(act);
-          act = ant;
+          act = act->sig;
+          free(ant);
+          ant = act;
           *first = act;
         }
         else
