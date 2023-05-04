@@ -1,0 +1,5 @@
+# exclude .exe files
+*.exe
+
+# exclude .directory .vscode
+*.vscode

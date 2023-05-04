@@ -1,7 +1,7 @@
 #include <stdlib.h>
 #include <stdio.h>
 
-void allocateFloat(int *p, int n) { *p = (float *)malloc(n * sizeof(float)); }
+void allocateFloat(float **p, int n) { *p = (float *)calloc(n, sizeof(float)); }
 
 void init(float *p, int n)
 {
