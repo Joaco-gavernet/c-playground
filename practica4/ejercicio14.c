@@ -73,6 +73,7 @@ int main() {
   inicializarRandom(matrix, n, 0, 20);
 
   imprimirMatrizTriangular(matrix, n);
+  free(matrix);
 
   return 0;
 }
