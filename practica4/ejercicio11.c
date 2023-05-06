@@ -18,11 +18,10 @@ int **reservarMemoria(int m, int n) {
 
 void inicializarMatriz(int **matrix, int m, int n) {
   printf("\nLectura de matriz: \n");
-  for (int i = 0; i < m; i++)
-  {
+  for (int i = 0; i < m; i++) {
     printf("Ingresar valores para la fila %d: ", i);
     for (int j = 0; j < n; j++)
-      scanf("%d", &(matrix[i][j]));
+    scanf("%d", &(matrix[i][j]));
   }
 }
 
