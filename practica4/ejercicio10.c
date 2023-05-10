@@ -10,6 +10,14 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+void leerArreglo(double * arr, int n) {
+  for (int i = 0; i < n; i++)
+  {
+    printf("Ingrese un numero real: ");
+    scanf("%lf", arr + i); // notacion de puntero
+  }
+}
+
 double promedio(double *arr, int n)
 {
   double total = 0;
@@ -27,12 +35,8 @@ int main()
   scanf("%d", &n);
 
   double *arr = (double *)calloc(n, sizeof(double));
-
-  for (int i = 0; i < n; i++)
-  {
-    printf("Ingrese un numero real: ");
-    scanf("%lf", arr + i); // notacion de puntero
-  }
+  printf("lectura del arreglo de %d elementos\n", n);
+  leerArreglo(arr, n);
 
   printf("El promedio de los numeros ingresados es: %lf\n", promedio(arr, n));
 
