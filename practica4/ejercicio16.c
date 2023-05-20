@@ -23,21 +23,32 @@ void buscarDivisores(int n, int ** divisores, int * dim) {
 
 void buscarDivisoresRealloc(int n, int * res, int * dim) {
   if (n == 0) printf("0 no es divisible");
+  else if ( n == 0 ) printf("1 es unicamente divisible por si mismo");
   else {
     for (int i = 1; i <= n/2; i++) {
       if (n % i == 0) {
-        realloc(res, *dim);
-        res[(*dim)++] = i;
+        res = (int *) realloc(res, ((*dim + 1) * sizeof(int)));
+        if (res == NULL) printf("Error in reallocation!!!!!");
+        else {
+          res[*dim] = i;
+          (*dim)++;
+        }
       }
     }
   }
-  
 }
 
 void imprimirDivisores(int n, int ** divs, int dim) {
   printf("Imprimiendo divisores de %d", n);
   forn(i, dim) {
     printf("%d ", *divs[i]);
+  }
+}
+
+void imprimirDivisoresRealloc(int n, int * divs, int dim) {
+  printf("Divisores (total %d) de %d: ", dim, n);
+  forn(i, dim) {
+    printf("%d ", divs[i]);
   }
 }
 
@@ -54,17 +65,17 @@ int main() {
   scanf("%d", &n);
 
   // implementacion con puntero a punteros
-  int ** divisores;
-  int dim = 0;
-  buscarDivisores(n, divisores, &dim);
-  imprimirDivisores(n, divisores, dim);
-  liberarDivisores(divisores, &dim);
+  // int ** divisores;
+  // int dim = 0;
+  // buscarDivisores(n, divisores, &dim);
+  // imprimirDivisores(n, divisores, dim);
+  // liberarDivisores(divisores, &dim);
 
   // implementacion con realloc
   int * divisoresRealloc;
   int dimRealloc = 0;
   buscarDivisoresRealloc(n, divisoresRealloc, &dimRealloc);
-  imprimirDivisoresRealloc(); // falta implementar y revisar funcionamientos
+  imprimirDivisoresRealloc(n, divisoresRealloc, dimRealloc); // REVISAR FUNCIONAMIENTO!!!!!!!!
   free(divisoresRealloc);
 
   return 0;
