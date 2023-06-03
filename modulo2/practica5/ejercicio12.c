@@ -23,16 +23,16 @@ int main() {
   char aux[100];
   int desplazamiento = 0;
 
-  desplazamiento = fscanf(origen, "%s", aux);
+  fscanf(origen, "%s", aux);
   printf("Desplazamiento %d\n", desplazamiento);
 
   while (!feof(origen)) {
     tabla[id].posicionBytes = desplazamiento;
-    desplazamiento += fscanf(origen, "%d%c", &id); // leo el numero y luego proceso el ";" que lo acompaña
-    desplazamiento += fscanf(origen, "%[^;]s", tabla[id].dni); // leo hasta el ";" y guardo en tabla[id].dni
+    fscanf(origen, "%d%c", &id); // leo el numero y luego proceso el ";" que lo acompaña
+    fscanf(origen, "%[^;]s", tabla[id].dni); // leo hasta el ";" y guardo en tabla[id].dni
     printf("ID %d: DNI %s\n", id, tabla[id].dni); // proceso el resto de la informacion para desplazar el puntero de fichero
 
-    desplazamiento += fscanf(origen, "%[^\n]s", aux);
+    fscanf(origen, "%[^\n]s", aux);
   }
 
   for (int i = 1; i <= id; i++) fprintf(destino, "%d | %s\n", i, tabla[i]);
