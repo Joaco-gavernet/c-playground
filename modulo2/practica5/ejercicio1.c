@@ -16,7 +16,8 @@ int main(){
   
   fgets(linea, LONG, f);
   while (!feof(f)){
-    puts(linea);
+    // puts(linea); // adds \n to the end
+    printf(linea); // does not
     fgets(linea, LONG, f);
   }
 
