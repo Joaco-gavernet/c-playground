@@ -3,34 +3,28 @@
 
 void copiarGetC(FILE * original, FILE * copia) {
   char c;
-  c = fgetc(original);
-  while (!feof(original)) {
+
+  while ((c = fgetc(original)) != EOF) {
     fputc(c, copia);
-    c = fgetc(original);
   }
   printf("Copia realizada correctamente\n");
 }
 
 void copiarGetS(FILE * original, FILE * copia) {
   char cadena[LONG];
-  fgets(cadena, LONG, original);
-  while (!feof(original)) {
+  
+  while (fgets(cadena, LONG, original) != NULL) {
     fputs(cadena, copia);
-    fgets(cadena, LONG, original);
   }
-  fputs(cadena, copia); // escribo la ultima cadena leida
 
   printf("Copia realizada correctamente\n");
 }
 
 void copiarRead(FILE * original, FILE * copia) {
   unsigned int n;
-  int result;
 
-  result = fread(&n, sizeof(char), 1, original);
-  while(result != 0) {
+  while(fread(&n, sizeof(char), 1, original) != 0) {
     fwrite(&n, sizeof(char), 1, copia);
-    result = fread(&n, sizeof(char), 1, original);
   }
 
   printf("Copia realizada correctamente\n");
