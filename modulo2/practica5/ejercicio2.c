@@ -17,13 +17,11 @@ int main(){
     return 1;
   }
 
-  actual = fgetc(f);
-  while (!feof(f)){
-    printf("imprimo caracter leido: %u\n", actual);
+  while ((actual = fgetc(f)) != EOF){
+    printf("imprimo caracter leido: %c\n", actual);
     if ((actual - 65 >= 0) && (actual - 91 < 0)) may++;
     else if ((actual - 97 >= 0) && (actual - 123 < 0)) min++;
     else if ((actual - 48 >= 0) && (actual - 58 < 0)) nums++;
-    actual = fgetc(f);
   }
 
   printf("Mayusculas: %d \nMinusculas: %d \nNumeros: %d", may, min, nums);
